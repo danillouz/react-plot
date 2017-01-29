@@ -1,0 +1,35 @@
+{
+  "name": "react-plot",
+  "version": "1.0.0",
+  "description": "Plot library for React",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir lib --ignore spec.js",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danillouz/react-plot.git"
+  },
+  "keywords": [
+    "plot",
+    "chart",
+    "graph",
+    "react"
+  ],
+  "author": "Daniël Illouz <daniel.illouz@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danillouz/react-plot/issues"
+  },
+  "homepage": "https://github.com/danillouz/react-plot#readme",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0"
+  },
+  "peerDependencies": {
+    "react": "^15.4.2"
+  }
+}
