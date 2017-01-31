@@ -1,24 +1,26 @@
 import React from 'react';
 
 const Line = ({
-	data,
-	max,
+	positions,
 	color = '#000',
-	thickness = '1',
+	thickness = 1,
 }) => {
-	const direction = data
-		.map(([ x, y ]) => `${x} ${max - y}`)
-		.map((dataPoint, i) => {
-			const isLast = i === data.length - 1;
+	const length = positions.length;
 
-			return !isLast ? `${dataPoint} L ` : `${dataPoint}`;
+	const direction = [
+		!!length ? 'M' : '',
+
+		...positions.map((dataPoint, i) => {
+			const isLast = i === positions.length - 1;
+
+			return !isLast ? `${dataPoint} L` : `${dataPoint}`;
 		})
-		.join('');
+	].join(' ');
 
 	return (
 		<g>
 			<path
-				d={`M ${direction}`}
+				d={direction}
 				fill="none"
 				strokeLinecap="round"
 				stroke={color}

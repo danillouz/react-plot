@@ -3,33 +3,25 @@ import React from 'react';
 const Axis = ({
 	x,
 	y,
-	length,
+	xMax,
+	yMax,
 	color = '#ccc',
-	thickness = '1'
+	thickness = 1
 }) => {
-	let moveTo;
-	let orientation;
+	const hasOrientation = x || y;
 
-	if (x) {
-		moveTo = `M 0 ${length}`;
-		orientation = 'h';
-	}
-
-	if (y) {
-		moveTo = `M 0 0`;
-		orientation = 'v';
-	}
-
-	if (!orientation) {
+	if (!hasOrientation) {
 		throw new Error(
 			'Provide an axis orientation: "<Axis x />" or "<Axis y />".'
 		);
 	}
 
+	const direction = x ? `M 0 ${yMax} h ${xMax}` : `M 0 0 v ${yMax}`;
+
 	return (
 		<g>
 			<path
-				d={`${moveTo} ${orientation} ${length}`}
+				d={direction}
 				stroke={color}
 				strokeWidth={thickness}
 			/>
