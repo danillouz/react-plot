@@ -29,10 +29,10 @@ const data = [
 ];
 
 render(
-	<Plot width="500" height="500" viewBox="0 0 500 500">
-  	  <Line data={data} color="#6fc1ff" thickness={3} max={500} />
-  	  <Axis x thickness={3} length={500} />
-  	  <Axis y thickness={3} length={500} />
+	<Plot width={500} height={500} data={data}>
+  	  <Line color="#6fc1ff" />
+  	  <Axis x />
+  	  <Axis y />
     </Plot>,
 
 	document.getElementById('root')
@@ -45,8 +45,7 @@ Renders:
 
 # Whats next
 At the moment the library exposes only this very simple line chart, but I'll
-add more functionality when I have the time and learn more 😀. Also, I'm still
-using some hardcoded values to properly render the line within its bounds.
+add more functionality when I have the time and learn more 😀.
 
 # License
 MIT Copyright (c) 2017 Daniël Illouz
