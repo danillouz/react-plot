@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Axis = ({
+	width,
+	height,
+	data,
 	x,
 	y,
-	xMax,
-	yMax,
 	color = '#ccc',
 	thickness = 1
 }) => {
@@ -16,7 +17,9 @@ const Axis = ({
 		);
 	}
 
-	const direction = x ? `M 0 ${yMax} h ${xMax}` : `M 0 0 v ${yMax}`;
+	const direction = x
+		? `M 0 ${height} h ${width}`
+		: `M 0 0 v ${height}`;
 
 	return (
 		<g>

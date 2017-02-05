@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 const {
 	number,
@@ -16,66 +16,31 @@ const Graph = ({ width, height, children }) => (
 	</svg>
 );
 
-class Plot extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			positions: [ ]
-		};
-	}
-
-	componentDidMount() {
-		this.setState(function calculatePositions(prevState, props) {
-			const {
-				height: yMax,
-				data
-			} = props;
-
-			const newPositions = data.map(([ x, y ]) => `${x} ${yMax - y}`);
-
-			return {
-				positions: [
-					...prevState.positions,
-					...newPositions
-				]
-			};
-		});
-	}
-
-	render() {
-		const {
-			width,
-			height,
-			children
-		} = this.props;
-
-		const {
-			positions
-		} = this.state;
-
-		return (
-			<Graph
-				width={width}
-				height={height}
-			>
-				{
-					React.Children.map(
-						children,
-						child => React.cloneElement(
-							child,
-							{
-								positions,
-								xMax: width,
-								yMax: height
-							}
-						)
-					)
-				}
-			</Graph>
-		);
-	}
-};
+const Plot = ({
+	width,
+	height,
+	data,
+	children
+}) => (
+	<Graph
+		width={width}
+		height={height}
+	>
+		{
+			React.Children.map(
+				children,
+				child => React.cloneElement(
+					child,
+					{
+						width,
+						height,
+						data
+					}
+				)
+			)
+		}
+	</Graph>
+);
 
 Plot.PropTypes = {
 	width: number.isRequired,
