@@ -81,8 +81,8 @@ const Plot = ({
 							width,
 							height,
 							positions,
-							xTick: [ xTickCount, xTickTravel ],
-							yTick: [ yTickCount, yTickTravel ]
+							xTick: [ xTickCount, xTickTravel, xRound ],
+							yTick: [ yTickCount, yTickTravel, yRound ]
 						}
 					)
 				)
