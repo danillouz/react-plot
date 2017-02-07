@@ -34,7 +34,7 @@ const Axis = ({
 	thickness = 1
 }) => {
 	const X_ORIENTATIONS = [ 'top', 'bottom' ];
-	const Y_ORIENTATIONS = [ 'left', 'rigth' ];
+	const Y_ORIENTATIONS = [ 'left', 'right' ];
 
 	const hasValidOrientation = [
 		...X_ORIENTATIONS,
@@ -48,24 +48,49 @@ const Axis = ({
 	}
 
 	const isX = X_ORIENTATIONS.includes(orientation);
-	const lineType = isX ? 'v' : 'h';
 	const max = isX ? xTickCount : yTickCount;
-	const tickLength = isX ? 8 : -8;
+	const tickLength = 8;
 	const ticks = [ ];
 
 	for (let i = 0; i < max; i++) {
-		const M = isX
-			? `M ${i * xTickTravel} ${height}`
-			: `M 0 ${i * yTickTravel}`
+		let direction;
 
-		const direction = `${M} ${lineType} ${tickLength}`;
+		if (orientation === 'left') {
+			direction = `M 0 ${i * yTickTravel} h -${tickLength}`;
+		}
+
+		if (orientation === 'right') {
+			direction = `M ${width} ${i * yTickTravel} h ${tickLength}`;
+		}
+
+		if (orientation === 'top') {
+			direction = `M ${i * xTickTravel} 0 v -${tickLength}`;
+		}
+
+		if (orientation === 'bottom') {
+			direction = `M ${i * xTickTravel} ${height} v ${tickLength}`;
+		}
 
 		ticks.push(<Tick key={i} direction={direction} />);
 	}
 
-	const direction = isX
-		? `M 0 ${height} h ${width}`
-		: `M 0 0 v ${height}`;
+	let direction;
+
+	if (orientation === 'left') {
+		direction = `M 0 0 v ${height}`;
+	}
+
+	if (orientation === 'right') {
+		direction = `M ${width} 0 v ${height}`;
+	}
+
+	if (orientation === 'top') {
+		direction = `M 0 0 h ${width}`;
+	}
+
+	if (orientation === 'bottom') {
+		direction = `M 0 ${height} h ${width}`;
+	}
 
 	return (
 		<g>
