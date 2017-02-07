@@ -31,8 +31,8 @@ const data = [
 render(
 	<Plot width={500} height={500} data={data}>
   	  <Line color="#6fc1ff" />
-  	  <Axis x />
-  	  <Axis y />
+  	  <Axis orientation="left" />
+  	  <Axis orientation="bottom" y />
     </Plot>,
 
 	document.getElementById('root')
